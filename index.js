@@ -103,17 +103,42 @@ app.get("/Data", (req, res) => {
 app.post("/entry", (req, res) => {
     const q = "INSERT INTO entry (`username`,`skill`,`category`,`description`,`price`,`rating`) VALUES (?)"
     const values = [
-        req.body.username,
+        //req.body.username,
         req.body.skill,
         req.body.category,
         req.body.description,
         req.body.price,
-        req.body.rating
+        //req.body.rating
     ]
 
     db.query(q, [values], (err, data) => {
         if (err) return res.json(err)
         return res.json("Entry has ben created succesfully")
+    })
+})
+
+// show all user entrys
+app.get("/userdetails", (req, res) => {
+    const q = "SELECT * FROM userdetails"
+    db.query(q, (err, data) => {
+        if (err) return res.json(err)
+        return res.json(data)
+    })
+})
+
+// create a new user entry
+app.post("/userdetails", (req, res) => {
+    const q = "INSERT INTO userdetails (`firstName`,`lastName`,`email`,`password`) VALUES (?)"
+    const values = [
+        req.body.firstName,
+        req.body.lastName,
+        req.body.email,
+        req.body.password,
+    ]
+
+    db.query(q, [values], (err, data) => {
+        if (err) return res.json(err)
+        return res.json("Userentry has ben created succesfully")
     })
 })
 
