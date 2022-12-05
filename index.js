@@ -101,7 +101,7 @@ app.get("/Data", (req, res) => {
 
 // create a new entry
 app.post("/entry", (req, res) => {
-    const q = "INSERT INTO entry (`username`,`skill`,`category`,`description`,`price`,`rating`) VALUES (?)"
+    const q = "INSERT INTO entry (`skill`,`category`,`description`,`price`) VALUES (?)"
     const values = [
         //req.body.username,
         req.body.skill,
